@@ -1,0 +1,50 @@
+.aboutus-card {
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .aboutus-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .aboutus-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+    margin-left: 20px;
+  }
+  
+  .aboutus-title {
+    font-size: 28px; /* Adjusted size for prominence */
+    font-weight: bold;
+    color: #2c3e50; /* Deep blue color for the title */
+    margin-bottom: 15px; /* Adds space below the title */
+  }
+  
+  .aboutus-details .ant-card-meta-description {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .aboutus-details p {
+    font-size: 14px;
+    color: #0073e6;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .aboutus-details p:hover {
+    text-decoration: underline;
+  }
+  

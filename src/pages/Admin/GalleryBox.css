@@ -1,0 +1,11 @@
+/* GalleryBox.css */
+.gallery-box {
+    padding: 16px;
+    background: #f0f2f5; /* Light background color */
+  }
+  
+  .ant-image {
+    border-radius: 4px; /* Rounded corners for images */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  

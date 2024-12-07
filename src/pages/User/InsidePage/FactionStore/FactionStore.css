@@ -1,0 +1,51 @@
+.PriscoPlantationHome {
+  position: relative; /* Necessary for positioning the overlay */
+  background-image: url('../../../../assets/plant.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  color: white;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.PriscoPlantationHome::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the color and opacity */
+  z-index: 1; /* Ensures the overlay is on top of the background image */
+}
+
+.PriscoPlantationHome > * {
+  position: relative;
+  z-index: 2; /* Ensures the content is above the overlay */
+}
+
+  
+  .content {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+  }
+  
+  .content h1 {
+    font-size: 3em;
+  }
+  
+  .content p {
+    font-size: 1.5em;
+  }
+  
+  .Plant {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1500px; /* Optional: ensures it takes up the full width if needed */
+    margin-top: 40px; /* Adds space above the AnimalFeed component to move it down */
+  }

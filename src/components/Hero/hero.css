@@ -1,0 +1,75 @@
+.hero-container {
+    position: relative;
+    text-align: center;
+    background-color: #ffffff;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+}
+  
+.hero-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+  
+.hero-container .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+  
+.hero-container h1,
+.hero-container h3,
+.hero-container button {
+    color: white;
+    margin: 10px 0;
+}
+  
+.hero-container h1 {
+    font-size: 4rem;
+    color: #ffffff;
+    font-weight: normal;
+}
+  
+.hero-container h3 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    font-weight: normal;
+}
+  
+.hero-container button {
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+  
+.hero-container .button1 {
+    background-color: #27ae60;
+    color: white;
+}
+  
+.hero-container .button1:hover {
+    background-color: #2ecc71;
+}
+  
+.hero-container .button2 {
+    background-color: white;
+    color: #27ae60;
+}
+  
+.hero-container .button2:hover {
+    background-color: #ecf0f1;
+}

@@ -1,0 +1,45 @@
+/* UserSettings.css */
+.user-settings {
+    min-height: 100vh;
+    background: #f0f2f5; /* Light background color */
+  }
+  
+  .sidebar {
+    background: #001529; /* Dark sidebar background color */
+  }
+  
+  .header {
+    background: red;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  .header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .header-content h2 {
+    margin: 0;
+    color: #000; /* Text color for header */
+  }
+  
+  .settings-content {
+    padding: 24px;
+    background: #fff;
+    min-height: 280px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for content */
+  }
+  
+  .settings-card {
+    margin-top: 24px;
+  }
+  
+  img {
+    //border-radius: 50%;
+  }
+  

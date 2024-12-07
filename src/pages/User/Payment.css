@@ -1,0 +1,61 @@
+/* Overall page styling */
+.payment-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #e6f7ff; /* Light blue background color */
+  }
+  
+  /* Card styling */
+  .payment-card {
+    width: 100%;
+    max-width: 500px; /* Restrict the maximum width of the card */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+    background-color: #fff; /* White background for card */
+  }
+  
+  /* Form item labels */
+  .ant-form-item-label > label {
+    color: #333; /* Darker color for better readability */
+    font-weight: bold;
+  }
+  
+  /* Form input fields */
+  .ant-input,
+  .ant-select-selector {
+    border-radius: 5px; /* Rounded corners */
+    border: 1px solid #d9d9d9; /* Light border color */
+  }
+  
+  /* Select dropdown */
+  .ant-select-selector {
+    height: 40px;
+    line-height: 40px;
+  }
+  
+  /* Form buttons */
+  .ant-btn-primary {
+    border-radius: 5px; /* Rounded corners for the button */
+    background-color: #1890ff; /* Ant Design primary color */
+    border-color: #1890ff;
+  }
+  
+  .ant-btn-primary:hover,
+  .ant-btn-primary:focus {
+    background-color: #40a9ff; /* Slightly lighter blue on hover/focus */
+    border-color: #40a9ff;
+  }
+  
+  /* Placeholder text styling */
+  .ant-input::placeholder {
+    color: #bfbfbf; /* Lighter gray color for placeholders */
+  }
+  
+  /* Adjust spacing between form items */
+  .ant-form-item {
+    margin-bottom: 24px;
+  }
+  

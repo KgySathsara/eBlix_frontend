@@ -1,0 +1,30 @@
+/* Sidebar.css */
+.sidebar-container {
+    position: relative;
+  }
+  
+  .sidebar-toggle {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    z-index: 1000; /* Ensure it is above other content */
+  }
+  
+  .sidebar-drawer .ant-drawer-body {
+    padding: 0; /* Remove padding to make full use of the drawer */
+  }
+  
+  .sidebar-menu {
+    height: 100%;
+    border-right: none; /* Remove default border */
+  }
+  
+  .ant-drawer-header {
+    background: #001529; /* Match with sidebar background color */
+    color: #fff; /* Text color for drawer header */
+  }
+  
+  .ant-drawer-close {
+    color: #fff; /* Close button color */
+  }
+  

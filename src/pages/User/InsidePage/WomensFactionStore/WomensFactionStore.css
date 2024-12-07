@@ -1,0 +1,71 @@
+.AnimalFeed {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1500px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+}
+
+.feed-gallery {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.feed-item {
+  text-align: center;
+  width: 30%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.feed-item:hover {
+  transform: scale(1.05);
+}
+
+.feed-image {
+  width: 100%;
+  height: 330px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.feed-description {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #555;
+  font-weight: 500;
+}
+
+.AnimalFeed p {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 20px;
+  color: #333;
+  line-height: 1.6;
+  max-width: 1200px;
+  margin-bottom: 0;
+  padding: 0 20px;
+}
+
+.AnimalFeed p::before {
+  content: open-quote;
+  font-size: 30px;
+  color: #ff6f61;
+  vertical-align: top;
+  margin-right: 5px;
+}
+
+.AnimalFeed p::after {
+  content: close-quote;
+  font-size: 30px;
+  color: #ff6f61;
+  vertical-align: bottom;
+  margin-left: 5px;
+}
