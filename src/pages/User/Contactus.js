@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import CustomFooter from '../../components/Footer/CustomFooter';
-import contactus from '../../assets/bg1.png';
+import contactus from '../../assets/MensFactionStore.jpg';
 import { message, Form, Input, Button, Divider, Card } from 'antd';
 import { PhoneFilled, MailFilled } from '@ant-design/icons';
 import axios from 'axios';

@@ -1,10 +1,10 @@
 import React from 'react';
 import Navbar from '../../../../components/Navbar/Navbar';
 import './BabyFactionsStore.css'; 
-import contactus from '../../../../assets/Breaders.jpg';
-import image1 from '../../../../assets/pic2.jpg'; 
-import image2 from '../../../../assets/pic3.jpg';
-import image3 from '../../../../assets/pic10.jpg';
+import contactus from '../../../../assets/BabyFactionsStore.jpeg';
+import image1 from '../../../../assets/pic2.jpeg'; 
+import image2 from '../../../../assets/pic3.jpeg';
+import image3 from '../../../../assets/pic10.jpeg';
 
 const BabyFactionsStore = () => {
   return (
@@ -14,11 +14,9 @@ const BabyFactionsStore = () => {
         <img src={contactus} alt="Contactus" className="contactus-image" />
         <div className="contactus-overlay">
           <div className="contactus-text">
-            <h1>Welcome to Prisco Breeders</h1>
+            <h1>Welcome to Baby Factions Store</h1>
             <h3>
-              At Prisco Breeders, we specialize in providing high-quality breeding services. Our
-              commitment to excellence ensures the best care and nutrition for your animals, giving
-              them the foundation for a healthy and productive life.
+              At Kgy Sathsara, we offer high-quality fashion that blends style, comfort, and durability. Discover timeless classics and trendy designs, crafted with care and a commitment to sustainability.
             </h3>
           </div>
         </div>
@@ -36,7 +34,6 @@ const BabyFactionsStore = () => {
             <img src={image3} alt="Breeder 3" className="feed-image" />
           </div>
         </div>
-        <p>At Prisco Breeders, we offer expert breeding services that ensure the best genetic traits in your livestock. Our experienced team uses the latest techniques to support healthy and successful breeding, delivering outstanding results that improve the quality of your herd.</p>
       </div>
     </section>
   );

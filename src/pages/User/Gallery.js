@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
 import CustomFooter from '../../components/Footer/CustomFooter';
-import contactus from '../../assets/bg1.png';
+import contactus from '../../assets/FactionStore.jpeg';
 import './user.css';
 import { Card, Button, InputNumber, Row, Col, message } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';

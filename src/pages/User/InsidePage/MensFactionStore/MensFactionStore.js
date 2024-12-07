@@ -1,9 +1,9 @@
 import React from 'react';
 import Navbar from '../../../../components/Navbar/Navbar';
-import contactus from '../../../../assets/Animal-Feed.jpg';
+import contactus from '../../../../assets/MensFactionStore.jpg';
 import image1 from '../../../../assets/pic1.jpg';
-import image2 from '../../../../assets/pic5.jpg';
-import image3 from '../../../../assets/pic6.jpg';
+import image2 from '../../../../assets/pic5.jpeg';
+import image3 from '../../../../assets/pic6.jpeg';
 import './MensFactionStore.css';
 
 const MensFactionStore = () => {
@@ -14,10 +14,9 @@ const MensFactionStore = () => {
         <img src={contactus} alt="Contactus" className="contactus-image" />
         <div className="contactus-overlay">
           <div className="contactus-text">
-            <h1>Welcome to Prisco Animal Feeds</h1>
+            <h1>Welcome to Mens Faction Store</h1>
             <h3>
-              At Prisco Animal Feeds, we provide top-quality feed products for your livestock. Our
-              commitment to excellence ensures your animals get the best nutrition available.
+              At Kgy Sathsara, we offer high-quality fashion that blends style, comfort, and durability. Discover timeless classics and trendy designs, crafted with care and a commitment to sustainability.
             </h3>
           </div>
         </div>
@@ -34,7 +33,6 @@ const MensFactionStore = () => {
             <img src={image3} alt="Feed 3" className="feed-image" />
           </div>
         </div>
-        <p>Our premium animal feed is expertly crafted to meet the nutritional needs of your livestock, whether they're cattle, poultry, or any other farm animals. Rich in essential vitamins, minerals, and proteins, our feed promotes healthy growth, boosts immunity, and enhances overall well-being. Carefully balanced to support every stage of life, our feed helps your animals thrive, ensuring they get the best care possible. Trust us to provide the nourishment your livestock deserves</p>
       </div>
     </section>
   );

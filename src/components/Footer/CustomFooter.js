@@ -10,7 +10,9 @@ const CustomFooter = () => {
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={12} md={8}>
           <h3 style={{ color: '#fff' }}>About Us</h3>
-          <p>We are a leading company in our industry, committed to providing top-quality products and services to our customers. Our mission is to drive innovation and deliver exceptional value through our dedicated team of professionals.</p>
+          <p>
+          At Kgy Sathsara, we offer high-quality fashion that blends style, comfort, and durability. Discover timeless classics and trendy designs, crafted with care and a commitment to sustainability.
+        </p>
         </Col>
         <Col xs={24} sm={12} md={8}>
           <h3 style={{ color: '#fff' }}>Contact</h3>
