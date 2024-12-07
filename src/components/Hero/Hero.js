@@ -11,7 +11,7 @@ const Hero = () => {
             <h1>High-Quality Fashion, Tailored for You</h1>
             <h3>Welcome to Kgy Sathsara's Shop!</h3>
                 <div className="buttons">
-                    <Link to="/UserAboutPrisco">
+                    <Link to="/UserAbout">
                         <button className="button1">About</button>
                     </Link>
                     <Link to="/Contactus">

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../../contexts/CartContext';
 import Navbar from '../../components/Navbar/Navbar';
-import contactus from '../../assets/bg1.png';
+import contactus from '../../assets/clothing.jpeg';
 import { Card, Button, message } from 'antd';
 import axios from 'axios';
 import './user.css';

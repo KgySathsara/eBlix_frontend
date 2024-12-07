@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import Navbar from '../../components/Navbar/Navbar';
-import contactus from '../../assets/bg1.png';
+import contactus from '../../assets/BabyFactionsStore.jpeg';
+import CustomFooter from '../../components/Footer/CustomFooter';
 import './user.css';
 import { Card, Button, Row, Col, InputNumber, message } from 'antd';
 import { ShoppingCartOutlined } from '@ant-design/icons';
@@ -84,6 +85,7 @@ const Product = () => {
           </Card>
         ))}
       </div>
+      <CustomFooter />
     </section>
   );
 };
