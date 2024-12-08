@@ -71,6 +71,7 @@ const settings = [
 const Navbar = () => {
   const [current, setCurrent] = useState('1');
   const navigate = useNavigate(); 
+
   const onClick = (e) => {
     console.log('click ', e);
     if (e.key === 'logout') {
@@ -122,6 +123,7 @@ const Navbar = () => {
         selectedKeys={[current]}
         mode="horizontal"
         className="navbar-menu"
+        theme="dark"
       >
         {items.map((item) => renderMenuItem(item))}
       </Menu>

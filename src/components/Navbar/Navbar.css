@@ -3,11 +3,17 @@
   align-items: center;
   background-color: #001529;
   padding: 10px 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .navbar-logo {
   height: 50px;
   margin-right: 20px;
+  transition: transform 0.3s;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.05);
 }
 
 .navbar-menu {
@@ -24,26 +30,29 @@
   color: white;
   flex: 1;
   border-bottom: none;
+  transition: background-color 0.3s;
 }
 
 .ant-menu-item,
 .ant-menu-submenu-title {
   color: white !important;
+  transition: color 0.3s, background-color 0.3s;
 }
 
 .ant-menu-horizontal > .ant-menu-item:hover,
 .ant-menu-horizontal > .ant-menu-submenu:hover {
   color: #1890ff !important;
+  background-color: rgba(24, 144, 255, 0.1);
 }
 
 .ant-menu-horizontal > .ant-menu-item-selected,
 .ant-menu-horizontal > .ant-menu-submenu-selected {
   border-bottom: none !important;
-  background-color: rgba(24, 144, 255, 0.1);
+  background-color: rgba(24, 144, 255, 0.2);
 }
 
 .ant-menu-submenu-popup {
-  max-height: 200px; 
+  max-height: 200px;
   overflow-y: auto;
 }
 
@@ -72,9 +81,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background-color 0.3s;
 }
 
 .usermenu .ant-menu-item:hover {
   background-color: #1890ff !important;
   color: white !important;
+}
+
+/* Animations and Responsive Enhancements */
+@media (max-width: 768px) {
+  .navbar-container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .navbar-logo {
+    margin-bottom: 10px;
+  }
+
+  .navbar-menu {
+    flex-direction: column;
+    width: 100%;
+  }
 }
