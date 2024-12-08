@@ -158,7 +158,7 @@ const ProductManagement = () => {
     if (!isImage) {
       message.error('You can only upload image files!');
     }
-    return isImage || Upload.LIST_IGNORE;
+    return isImage;
   };
 
   const columns = [
