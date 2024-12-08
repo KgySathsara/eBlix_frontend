@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Layout, Form, Input, Button, Table, Modal, message, Row, Col, Card, Upload } from 'antd';
-import { PlusOutlined, DeleteOutlined, UploadOutlined } from '@ant-design/icons';
+import { PlusOutlined, DeleteOutlined, UploadOutlined, EditOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import Sidebar from '../../components/Navbar/Sidebar';
 import './ProductManagement.css';
@@ -15,15 +15,20 @@ const ProductManagement = () => {
   const [fileList, setFileList] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/products')
-      .then(response => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = () => {
+    axios
+      .get('http://localhost:8000/api/products')
+      .then((response) => {
         setProducts(response.data.products);
       })
-      .catch(error => {
-        console.error('There was an error fetching the products!', error);
-        message.error('There was an error fetching the products!');
+      .catch((error) => {
+        console.error('Error fetching products:', error);
+        message.error('Error fetching products!');
       });
-  }, []);
+  };
 
   const handleAddProduct = () => {
     setEditingProduct(null);
@@ -32,7 +37,6 @@ const ProductManagement = () => {
     setIsModalOpen(true);
   };
 
-  // eslint-disable-next-line no-unused-vars
   const handleEditProduct = (product) => {
     setEditingProduct(product);
     form.setFieldsValue({
@@ -41,19 +45,33 @@ const ProductManagement = () => {
       price: product.price,
       quantity: product.quantity,
     });
-    setFileList([]);
+
+    if (product.image_url) {
+      setFileList([
+        {
+          uid: '-1',
+          name: 'Existing Image',
+          status: 'done',
+          url: product.image_url,
+        },
+      ]);
+    } else {
+      setFileList([]);
+    }
+
     setIsModalOpen(true);
   };
 
   const handleDeleteProduct = (productId) => {
-    axios.delete(`http://localhost:8000/api/products/${productId}`)
+    axios
+      .delete(`http://localhost:8000/api/products/${productId}`)
       .then(() => {
-        setProducts(products.filter(product => product.id !== productId));
+        setProducts(products.filter((product) => product.id !== productId));
         message.success('Product deleted successfully');
       })
-      .catch(error => {
-        console.error('There was an error deleting the product!', error);
-        message.error('There was an error deleting the product!');
+      .catch((error) => {
+        console.error('Error deleting product:', error);
+        message.error('Error deleting product!');
       });
   };
 
@@ -68,16 +86,18 @@ const ProductManagement = () => {
       formData.append('upload', fileList[0].originFileObj);
     }
 
-    axios.post('http://localhost:8000/api/products', formData)
-      .then(response => {
+    axios
+      .post('http://localhost:8000/api/products', formData)
+      .then((response) => {
         setProducts([...products, response.data.product]);
         message.success('Product added successfully');
         setIsModalOpen(false);
+        form.resetFields();
         setFileList([]);
       })
-      .catch(error => {
-        console.error('There was an error adding the product!', error);
-        message.error('There was an error adding the product!');
+      .catch((error) => {
+        console.error('Error adding product:', error);
+        message.error('Error adding product!');
       });
   };
 
@@ -88,34 +108,43 @@ const ProductManagement = () => {
     formData.append('price', values.price);
     formData.append('quantity', values.quantity);
 
-    if (fileList.length > 0) {
+    if (fileList.length > 0 && fileList[0]?.originFileObj) {
       formData.append('upload', fileList[0].originFileObj);
+    } else if (!fileList.length && editingProduct?.image_url) {
+      formData.append('remove_image', true);
     }
 
-    axios.put(`http://localhost:8000/api/products/${editingProduct.id}`, formData)
-      .then(response => {
-        setProducts(products.map(product => product.id === editingProduct.id ? response.data.product : product));
+    axios
+      .put(`http://localhost:8000/api/products/${editingProduct.id}`, formData)
+      .then((response) => {
+        setProducts(
+          products.map((product) =>
+            product.id === editingProduct.id ? response.data.product : product
+          )
+        );
         message.success('Product updated successfully');
         setIsModalOpen(false);
         setFileList([]);
+        form.resetFields();
       })
-      .catch(error => {
-        console.error('There was an error updating the product!', error);
-        message.error('There was an error updating the product!');
+      .catch((error) => {
+        console.error('Error updating product:', error);
+        message.error('Error updating product!');
       });
   };
 
   const handleOk = () => {
-    form.validateFields()
-      .then(values => {
+    form
+      .validateFields()
+      .then((values) => {
         if (editingProduct) {
           handleUpdate(values);
         } else {
           handleSubmit(values);
         }
       })
-      .catch(info => {
-        console.log('Validate Failed:', info);
+      .catch((info) => {
+        console.log('Validation Failed:', info);
       });
   };
 
@@ -155,19 +184,18 @@ const ProductManagement = () => {
     },
     {
       title: 'Image',
-      dataIndex: 'image',
-      key: 'image',
-      render: (image) => {
-        const imageSrc = typeof image === 'string' && image.startsWith('http') ? image : `data:image/png;base64,${image}`;
-        return <img src={imageSrc} alt="Product" style={{ width: '100px', height: '100px', objectFit: 'cover' }} />;
-      },
+      dataIndex: 'image_url',
+      key: 'image_url',
+      render: (url) =>
+        url ? <img src={url} alt="Product" style={{ width: 100, height: 100, objectFit: 'cover' }} /> : 'N/A',
     },
     {
       title: 'Actions',
       key: 'actions',
       render: (_, record) => (
         <>
-          <Button icon={<DeleteOutlined />} onClick={() => handleDeleteProduct(record.id)} />
+        <Button type="link"  icon={<EditOutlined />}  onClick={() => handleEditProduct(record)}/>
+          <Button type="link" danger icon={<DeleteOutlined />} onClick={() => handleDeleteProduct(record.id)} />
         </>
       ),
     },
@@ -182,7 +210,7 @@ const ProductManagement = () => {
         <Header className="header">
           <div className="header-content">
             <h2>Product Management</h2>
-            <Button type="primary" icon={<PlusOutlined />} onClick={handleAddProduct} className="add-button">
+            <Button type="primary" icon={<PlusOutlined />} onClick={handleAddProduct}>
               Add Product
             </Button>
           </div>
@@ -203,16 +231,7 @@ const ProductManagement = () => {
           onOk={handleOk}
           onCancel={handleCancel}
         >
-          <Form
-            form={form}
-            layout="vertical"
-            initialValues={editingProduct ? {
-              name: editingProduct.name,
-              description: editingProduct.description,
-              price: editingProduct.price,
-              quantity: editingProduct.quantity,
-            } : {}}
-          >
+          <Form form={form} layout="vertical">
             <Form.Item
               label="Product Name"
               name="name"
@@ -249,8 +268,7 @@ const ProductManagement = () => {
               label="Upload Product Image"
               name="upload"
               valuePropName="fileList"
-              getValueFromEvent={e => (Array.isArray(e) ? e : e && e.fileList)}
-              rules={[{ required: !editingProduct, message: 'Please upload a product image!' }]}
+              getValueFromEvent={(e) => (Array.isArray(e) ? e : e && e.fileList)}
             >
               <Upload
                 beforeUpload={beforeUpload}

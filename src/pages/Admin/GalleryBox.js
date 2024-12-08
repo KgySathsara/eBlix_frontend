@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Layout, Form, Input, Button, Table, Modal, message, Upload } from 'antd';
-import { PlusOutlined, UploadOutlined, DeleteOutlined } from '@ant-design/icons';
+import { PlusOutlined, UploadOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import './OrderManagement.css';
 
@@ -14,17 +14,18 @@ const GalleryBox = () => {
   const [fileList, setFileList] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8000/api/gallery')
-      .then(response => {
-        const imagesWithSrc = response.data.galleries.map(image => ({
+    axios
+      .get('http://localhost:8000/api/gallery')
+      .then((response) => {
+        const imagesWithSrc = response.data.galleries.map((image) => ({
           ...image,
-          image: image.image, // Assuming API returns a base64 string already
+          image: image.image, // API returns Base64 encoded image
         }));
         setImages(imagesWithSrc);
       })
-      .catch(error => {
-        console.error('There was an error fetching the galleries!', error);
-        message.error('There was an error fetching the galleries!');
+      .catch((error) => {
+        console.error('Error fetching galleries:', error);
+        message.error('Error fetching galleries!');
       });
   }, []);
 
@@ -35,15 +36,27 @@ const GalleryBox = () => {
     setIsModalOpen(true);
   };
 
+  const handleEditImage = (image) => {
+    setEditingImage(image);
+    form.setFieldsValue({
+      name: image.name,
+      price: image.price,
+      quantity: image.quantity,
+    });
+    setFileList([]);
+    setIsModalOpen(true);
+  };
+
   const handleDeleteImage = (imageId) => {
-    axios.delete(`http://localhost:8000/api/gallery/${imageId}`)
+    axios
+      .delete(`http://localhost:8000/api/gallery/${imageId}`)
       .then(() => {
-        setImages(prevImages => prevImages.filter(image => image.id !== imageId));
+        setImages((prevImages) => prevImages.filter((image) => image.id !== imageId));
         message.success('Image deleted successfully');
       })
-      .catch(error => {
-        console.error('There was an error deleting the image!', error);
-        message.error('There was an error deleting the image!');
+      .catch((error) => {
+        console.error('Error deleting image:', error);
+        message.error('Error deleting image!');
       });
   };
 
@@ -63,10 +76,10 @@ const GalleryBox = () => {
       : axios.post('http://localhost:8000/api/gallery', formData);
 
     request
-      .then(response => {
+      .then((response) => {
         const updatedImage = response.data.gallery;
         if (editingImage) {
-          setImages(images.map(image => (image.id === updatedImage.id ? updatedImage : image)));
+          setImages(images.map((image) => (image.id === updatedImage.id ? updatedImage : image)));
         } else {
           setImages([...images, updatedImage]);
         }
@@ -74,19 +87,19 @@ const GalleryBox = () => {
         setIsModalOpen(false);
         setFileList([]);
       })
-      .catch(error => {
-        console.error('Error details:', error.response?.data || error.message);
-        message.error(`There was an error ${editingImage ? 'updating' : 'adding'} the image: ${error.response?.data?.message || error.message}`);
+      .catch((error) => {
+        console.error('Error:', error.response?.data || error.message);
+        message.error(`Error ${editingImage ? 'updating' : 'adding'} the image: ${error.response?.data?.message || error.message}`);
       });
   };
 
   const handleOk = () => {
     form.validateFields()
-      .then(values => {
+      .then((values) => {
         handleSubmit(values);
       })
-      .catch(info => {
-        console.log('Validate Failed:', info);
+      .catch((info) => {
+        console.log('Validation Failed:', info);
       });
   };
 
@@ -124,28 +137,29 @@ const GalleryBox = () => {
       title: 'Image',
       dataIndex: 'image',
       key: 'image',
-      render: (image) => {
-        if (!image) {
-          return 'No Image';
-        }
-
-        const imgSrc = typeof image === 'string' && image.startsWith('data:') ? image : `data:image/jpeg;base64,${image}`; // Ensure image is displayed correctly
-
-        return (
-          <img
-            src={imgSrc} // imgSrc is either a base64 string or a URL
-            alt="Gallery"
-            style={{ width: '100px', height: '100px', objectFit: 'cover' }}
-          />
-        );
-      },
+      render: (image) => (
+        <img
+          src={image}
+          alt="Gallery"
+          style={{ width: '100px', height: '100px', objectFit: 'cover' }}
+        />
+      ),
     },
     {
       title: 'Actions',
       key: 'actions',
       render: (_, record) => (
         <>
-          <Button icon={<DeleteOutlined />} onClick={() => handleDeleteImage(record.id)} style={{ marginLeft: 8 }} />
+          <Button
+            icon={<EditOutlined />}
+            onClick={() => handleEditImage(record)}
+            style={{ marginRight: 8 }}
+          />
+          <Button
+            icon={<DeleteOutlined />}
+            onClick={() => handleDeleteImage(record.id)}
+            style={{ marginLeft: 8 }}
+          />
         </>
       ),
     },
@@ -154,7 +168,12 @@ const GalleryBox = () => {
   return (
     <Layout>
       <Content className="management-content">
-        <Button type="primary" icon={<PlusOutlined />} onClick={handleAddImage} style={{ marginBottom: 16 }}>
+        <Button
+          type="primary"
+          icon={<PlusOutlined />}
+          onClick={handleAddImage}
+          style={{ marginBottom: 16 }}
+        >
           Add Image
         </Button>
         <Table columns={columns} dataSource={images} rowKey="id" />
@@ -164,11 +183,7 @@ const GalleryBox = () => {
           onOk={handleOk}
           onCancel={handleCancel}
         >
-          <Form
-            form={form}
-            layout="vertical"
-            initialValues={editingImage}
-          >
+          <Form form={form} layout="vertical" initialValues={editingImage}>
             <Form.Item
               label="Name"
               name="name"
@@ -176,29 +191,20 @@ const GalleryBox = () => {
             >
               <Input placeholder="Enter image name" />
             </Form.Item>
-
             <Form.Item
               label="Price"
               name="price"
               rules={[{ required: true, message: 'Please input the image price!' }]}
             >
-              <Input
-                type="number"
-                placeholder="Enter image price"
-              />
+              <Input type="number" placeholder="Enter image price" />
             </Form.Item>
-
             <Form.Item
               label="Quantity"
               name="quantity"
               rules={[{ required: true, message: 'Please input the image quantity!' }]}
             >
-              <Input
-                type="number"
-                placeholder="Enter image quantity"
-              />
+              <Input type="number" placeholder="Enter image quantity" />
             </Form.Item>
-
             <Form.Item
               label="Image"
               name="upload"
